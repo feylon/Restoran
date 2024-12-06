@@ -1,27 +1,27 @@
 <template>
-    <div class="w-full h-full">
-        <div class="h-[70px] shadow-md text-center  bg-orange-50 sticky top-0 w-full flex items-center justify-between">
-            <router-link to="/">
-                <logo />
-            </router-link>
-            <div class="flex justify-between items-center gap-4">
-                <div class="font-semibold"
-                    v-for="(i, j) in [{ name: 'Why Bento' }, { name: 'Products' }, { name: 'Restaurant Type' }, { name: 'Pricing' }, { name: 'Resources' }]"
-                    :key="j">
+    <div class="h-[70px] shadow-md text-center  p-3 bg-orange-50 sticky top-0 w-[100vw] flex items-center justify-between">
+        <router-link to="/">
+            <logo />
+        </router-link>
+        <div class="flex justify-between items-center gap-4">
+            <div class="font-semibold"
+                v-for="(i, j) in [{ name: 'Why Bento' }, { name: 'Products' }, { name: 'Restaurant Type' }, { name: 'Pricing' }, { name: 'Resources' }]"
+                :key="j">
 
-                    {{ i.name }}
-                </div>
-            </div>
-
-
-            <div class="flex justify-around items-center gap-3 pe-3">
-                <span> +1 (877) 353-2447</span>
-                <button
-                    class="bg-[#14838a] h-[50px] ps-3 pe-3 flex rounded-[30px] text-white items-center justify-center">
-                    Get Started
-                </button>
+                {{ i.name }}
             </div>
         </div>
+
+
+        <div class="flex justify-around items-center gap-3 pe-3">
+            <span> +1 (877) 353-2447</span>
+            <button
+                class="bg-[#14838a] h-[50px] ps-3 pe-3 flex rounded-[30px] text-white items-center justify-center">
+                Get Started
+            </button>
+        </div>
+    </div>
+    <div class="max-w-[1300px] mx-auto h-full">
 
 
 
@@ -173,7 +173,189 @@
                 restaurants can then use to deliver even better hospitality.
             </div>
         </div>
+
+
+        <div class="w-full flex  flex-wrap p-3 justify-center">
+
+            <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/2takeout_and_delivery.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Restaurant Websites
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/3digital_waitlist.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Takeout & Delivery
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/4online_catering.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Digital Waitlist
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/5events_management.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Online Catering
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/6reservations.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Events Management
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/7ecommerce_stores.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Reservations
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/8gift_cards.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                eCommerce Stores
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/9qr_code.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                Gift Cards
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+                <div  class="w-[400px] flex flex-col items-center">
+                <img  src="../../../public/1restaurant_websites__2_.webp" alt="">
+            <span class="mt-1 text-[24px] font-semibold text-orange-700">
+                QR Code Order & Pay
+            </span>
+
+            <span class="text-center w-[70%] text-gray-700 text-[16px] mt-3">
+                Launch a branded online experience built specifically to help your restaurant stand out and make more money.
+            </span>
+                </div>
+
+
+                <div class="mx-auto p-7">
+                    <img src="../../../public/homepage_testimonial_fini.webp" alt="">
+                </div>
+
+
+
+
+                <div class="mx-auto p-7">
+                    <img src="../../../public/homepage_testimonial_little_tart.webp" alt="">
+                </div>
+                
+        </div>
+
+
     </div>
+        <footer class="w-full h-[300px] bg-pink-100 flex justify-around gap-4 pt-4">
+            <div class=" border-r border-r-[1px] pe-[70px] flex items-start pt-3 pb-2 flex-col justify-center border-gray-300" >
+                <span class="font-bold mb-2 block text-[18px] text-gray-800">
+                    BentoBox
+                </span>
+                <ul class="gap-4 flex flex-col text-gray-500 font-bold">
+                    <li>Life at Bentobox</li>
+                    <li>Careers</li>
+                    <li>Customer Stories</li>
+                    <li>Platform Status</li>
+                    <li>DEI</li>
+                </ul>
+            </div>
+
+
+
+            <div class=" border-r border-r-[1px] pe-[70px] flex items-start pt-3 pb-2 flex-col justify-center border-gray-300" >
+                <span class="font-bold mb-2 block text-[18px] text-gray-800">
+                    Contact
+
+
+
+
+
+                </span>
+                <ul class="gap-4 flex flex-col text-gray-500 font-bold">
+                    <li>Sign Up</li>
+                    <li>Call Now</li>
+                    <li>Watch The Demo</li>
+                    <li>Refer a Restaurant</li>
+                    <li>Referral Terms</li>
+                </ul>
+            </div>
+
+
+
+
+
+        </footer>
+
+
 </template>
 
 <script setup>
