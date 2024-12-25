@@ -3,13 +3,25 @@ import cors from "cors";
 import http from "http";
 import { configDotenv } from "dotenv";
 
-configDotenv();
+import pool from "./functions/database.js";
 
+(async () => {
+  try {
+    const client = await pool.connect();
+    console.log("Database serverga ulanish muvaffaqiyatli amalga oshirildi");
+    client.release();
+  } catch (err) {
+    console.error("Database serverga ulanishda xatolik:", err.stack);
+  } finally {
+    await pool.end();
+  }
+})();
+
+configDotenv();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((err, req, res, next) => {
-    
   if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
     return res.status(400).json({
       status: "error",
