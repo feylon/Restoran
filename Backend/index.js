@@ -41,6 +41,9 @@ app.use("/", (req, res) => {
   res.send("Salom");
 });
 const server = http.createServer(app);
+// Routers
+import Admin from "./Routers/Admin/index.js";
+Admin.forEach((index) =>app.use(`admin/${index.path}`, index.component));
 
 try {
   server.listen(process.env.PORT || 3000, () =>
