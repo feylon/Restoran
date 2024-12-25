@@ -9,7 +9,8 @@ const router = createRouter({
     
     
     // admin routers
-    {path:"/admin/login", component :()=>import("../src/Admin/login.vue")}
+    {path:"/admin/login", component :()=>import("../src/Admin/login.vue")},
+    {path : "/admin", component:()=>import("../src/Admin/main.vue")}
     
     
     ]

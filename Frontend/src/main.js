@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import router from "../Pages";
+import naive from 'naive-ui'
+
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -21,5 +23,6 @@ library.add(...solidIconValues, ...regularIconValues, ...brandIconValues);
 
 const app = createApp(App);
 app.use(router);
+app.use(naive)
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");

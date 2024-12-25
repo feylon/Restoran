@@ -8,13 +8,14 @@
 
         <div class="fixed text-white top-0 w-full flex justify-center" >
             <ul v-if="!form" class="flex justify-around gap-10 mt-4 ">
-                <button  @click="form = true;" class="w-[100px] rounded cursor-pointer h-[30px] backdrop-blur-sm  flex justify-center items-center border border-white"> <span>Kirish</span></button>
-                <button class="w-[100px] rounded cursor-pointer h-[30px] backdrop-blur-sm  flex justify-center items-center border border-white"> <span>Tiklash</span></button>
+                <button  @click="form = true;" class="w-[100px] rounded cursor-pointer h-[30px] backdrop-blur-[1px]  flex justify-center items-center border border-white"> <span>Kirish</span></button>
+                <button class="w-[100px] rounded cursor-pointer h-[30px] backdrop-blur-[1px]  flex justify-center items-center border border-white"> <span>Tiklash</span></button>
                 
             </ul>
         </div>
 
-        <div v-if="form"
+        <form v-if="form"
+            @submit.prevent="login"
             class="w-[400px]  sticky p-3 z-1  shadow-lg bg-white  shadow-black shadow-[10px] rounded-lg translate-x-8">
             <div>
                 <img src="../../public//fork-and-knife-icon-vector-18744737.jpg" class="w-[80px] mx-auto object-cover">
@@ -52,7 +53,7 @@
                 Parolni unitdingizmi ?
             </routerLink>
             <div class="w-full mt-4 mb-4">
-                <button type="button"
+                <button type="submit" 
                     class="py-2 px-4 max-w-md  flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                     <font-awesome-icon :icon="['fas', 'circle-arrow-right']" />
                 </button>
@@ -63,14 +64,17 @@
                     class="text-[15px] cursor-pointer hover:text-red-700 font-extrabold" :icon="['fas', 'x']" />
             </div>
 
-        </div>
+        </form>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 const form = ref(!false);
-const isLoading = ref(true)
+const router = useRouter();
+
+const isLoading = ref(true);
 onMounted(()=>{
 
 
@@ -81,7 +85,13 @@ onMounted(()=>{
 
         if(e.key == "Escape" && form.value)form.value = false;
     })
-})
+});
+
+
+const login = function(){
+
+    return router.push("/admin")
+}
 </script>
 
 <style scoped>
