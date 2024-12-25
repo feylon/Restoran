@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isLoading" class="fixed w-[100vw] h-[100vh] flex items-center bg-slate-900 justify-center ">
+    <div v-if="isLoading" class="fixed  w-[100vw] h-[100vh] flex items-center bg-slate-900 justify-center ">
         <img src="/infinite-spinner.svg" class="w-[200px]" alt="">
     </div>
     <div v-else class="w-[100vw] overflow-hidden bg-[#F9FAFB] h-[100vh] min-h-[100vh]">
@@ -74,8 +74,11 @@
             </span> 
         </routerLink>
 </div>
-<div class="w-full min-w-[calc(100%-299px)] p-3 h-full min-h-full overflow-x-auto mb-10 pb-[100px]">
-salom</div>
+<div class="w-full selection:bg-blue-300 min-w-[calc(100%-299px)] p-3 h-full min-h-full overflow-x-auto mb-10 pb-[100px]">
+<router-view>
+
+</router-view>
+</div>
 
 </div>
 
@@ -96,8 +99,8 @@ const value = ref(10);
 
 const menu = ref(
     [
-        {to : "/", font : ['fas', 'house'], class : 'text-blue-600', content : 'Dashtboard'},
-        {to : "/", font : ['fa-regular', 'fa-envelope'], class : 'text-yellow-600', content : 'Messages'},
+        {to : "/admin", font : ['fas', 'house'], class : 'text-blue-600', content : 'Dashtboard'},
+        {to : "/admin", font : ['fa-regular', 'fa-envelope'], class : 'text-yellow-600', content : 'Messages'},
     
     ]
 

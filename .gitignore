@@ -1,4 +1,5 @@
 /node_modules
 /vite-project/node_modules
-/fronend/node_modules
+/frontend/node_modules
 /fronend/dist
+/backend/node_modules
