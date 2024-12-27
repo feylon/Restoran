@@ -23,5 +23,8 @@ CREATE TABLE Admin (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     profile_url varchar(100)
 );
+ALTER TABLE admin
+ADD COLUMN active BOOLEAN DEFAULT true,
+ADD COLUMN state BOOLEAN DEFAULT true;
 insert into admin (name, login, password, lastname, firstname, permission_id, email) values
 ('Salom', 'salom1409', '$2b$10$6PyEX8fPzo39jT55rDVaj.lDEG8KehNoe/plSb6dOu.8W0w68y3Me', 'Ergashev', 'Jamshid', 1, 'jamshid14092002@gmail.com');

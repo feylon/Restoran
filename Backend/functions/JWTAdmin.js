@@ -13,4 +13,17 @@ function sign(id) {
 
   return { token, die };
 }
-export { sign };
+
+function verify(req, res, next) {
+  const { JWTADMIN } = process.env;
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+
+    const user = JWT.verify(token, JWTADMIN);
+    req.ID = user.id;
+    next();
+  } catch (error) {
+    return res.status(401).send({ error: "Token not found 🤢🤢🤢🤔" });
+  }
+}
+export { sign, verify };

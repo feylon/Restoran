@@ -11,13 +11,14 @@ const Schema = Joi.object({
 const router = Router();
 router.post("/", async (req, res) => {
   const checkSchema = Schema.validate(req.body);
+
   if (checkSchema.error)
     return res.status(400).send({ error: checkSchema.error.message });
   const { login, password } = checkSchema.value;
   try {
     const data = await pool.query(
       `
-        Select  admin.password as pas, admin.id as id from admin where login = LOWER($1)
+        Select  admin.password as pas, admin.id as id, admin.active as active from admin where login = LOWER($1) and admin.state
     group by admin.password, admin.id
     ;`,
       [login]
@@ -26,7 +27,8 @@ router.post("/", async (req, res) => {
       return res
         .status(400)
         .send({ error: "Login or password incorrect 🤢🤢🤢🤔" });
-    const { id, pas } = data.rows[0];
+        const { id, pas, active } = data.rows[0];
+    if  (!active) return res.status(400).send({ error: "Account is blocked 🤢🤢🤢🤔" });
     if (check_hash(password, pas)) {
       const { token, die } = sign(id);
       return res.status(200).send({ token, die });
@@ -39,5 +41,5 @@ router.post("/", async (req, res) => {
     res.status(500).send({ error: "Server error 🤢🤢🤢🤔" });
   }
 });
-
+// For use token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNGI0MDc4LWQ1YTctNGM1NC1hNjcyLWNhYmNhM2I5NDMzMyIsImlhdCI6MTczNTI5OTI4MywiZXhwIjoxNzM1OTA0MDgzfQ.FpRZRvs4vUUIjHPZDRg2am1Dezi_BaA2Wu8gm25gzpg
 export default router;
