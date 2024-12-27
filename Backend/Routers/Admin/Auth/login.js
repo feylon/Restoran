@@ -41,5 +41,7 @@ router.post("/", async (req, res) => {
     res.status(500).send({ error: "Server error 🤢🤢🤢🤔" });
   }
 });
-// For use token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNGI0MDc4LWQ1YTctNGM1NC1hNjcyLWNhYmNhM2I5NDMzMyIsImlhdCI6MTczNTI5OTI4MywiZXhwIjoxNzM1OTA0MDgzfQ.FpRZRvs4vUUIjHPZDRg2am1Dezi_BaA2Wu8gm25gzpg
+/* For use token 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNGI0MDc4LWQ1YTctNGM1NC1hNjcyLWNhYmNhM2I5NDMzMyIsImlhdCI6MTczNTI5OTI4MywiZXhwIjoxNzM1OTA0MDgzfQ.FpRZRvs4vUUIjHPZDRg2am1Dezi_BaA2Wu8gm25gzpg
+*/
 export default router;
