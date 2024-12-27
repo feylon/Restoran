@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import http from "http";
 import { configDotenv } from "dotenv";
-
 import pool from "./functions/database.js";
+
 
 (async () => {
   try {
@@ -11,9 +11,9 @@ import pool from "./functions/database.js";
     console.log("Database serverga ulanish muvaffaqiyatli amalga oshirildi");
     client.release();
   } catch (err) {
-    console.error("Database serverga ulanishda xatolik:", err.stack);
+    console.log("Database serverga ulanishda xatolik:", err.stack);
   } finally {
-    await pool.end();
+    // await pool.end();
   }
 })();
 
@@ -37,13 +37,10 @@ app.use(
   })
 );
 
-app.use("/", (req, res) => {
-  res.send("Salom");
-});
 const server = http.createServer(app);
 // Routers
 import Admin from "./Routers/Admin/index.js";
-Admin.forEach((index) =>app.use(`admin/${index.path}`, index.component));
+Admin.forEach((index) =>app.use(`/admin${index.path}`, index.component));
 
 try {
   server.listen(process.env.PORT || 3000, () =>
