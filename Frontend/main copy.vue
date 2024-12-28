@@ -50,9 +50,9 @@
 <div class="border-l-[0 px] ps-5 flex items-center justify-center ">
   <n-dropdown trigger="hover" :options="options" @select="handleSelect">
     <div class="flex flex-col w-[90px] border-transparent border-s-2 h-[38%]  mt-1 items-center justify-center gap-1 cursor-pointer">
-        <img :src="`${url}${data.profile_url.replace('/uploads','')}`"  class="w-[35px] rounded-[50%] object-fill h-[35px]" alt="">
+        <img src="/adminlogin back.jpg"  class="w-[35px] rounded-[50%] object-fill h-[35px]" alt="">
         <span class="text-[11px] text-center">
-            {{ `${data.lastname} ${data.firstname}` }}
+            Ergashev Jamshid
         </span>
     </div>
 </n-dropdown>
@@ -87,26 +87,14 @@
 </template>
 
 <script setup>
-import url from "../../url";
 import { ref } from 'vue';
 import { NAvatar, NText, useMessage } from "naive-ui";
 import { onMounted, h } from "vue";
-import { useRouter } from "vue-router";
 const message = useMessage();
-const router = useRouter();
+
 const isLoading = ref(true);
 const value = ref(10);
-const data = ref({
-    name: "Salom",
-    login: "salom1409",
-    lastname: "Doe",
-    firstname: "John",
-    birthday: "1989-12-31T18:00:00.000Z",
-    admin_name: "main",
-    permission_id: "1",
-    email: "user@example.com",
-    profile_url: "/uploads/profile_pics/f54efbfefc3bc732793e8a4c16425f40.jpg"
-})
+
 
 
 const menu = ref(
@@ -122,21 +110,20 @@ function renderCustomHeader() {
   return h(
     "div",
     {
-      style: "display: flex; align-items: center;width:180px; padding: 8px 12px;"
+      style: "display: flex; align-items: center; padding: 8px 12px;"
     },
     [
       h(NAvatar, {
         round: true,
         class : "mx-auto",
-        style:"width:40px; height:40px;",
-        src: `${url}${data.value.profile_url.replace('/uploads','')}`
+        src: "https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"
       }),
       h("div", null, [
         h("div", null, [
-          h("span", {class:"font-bold text-[13px] ms-3 me-3"},  { default: () => `${data.value.lastname} ${data.value.firstname}` })
+          h("span", {class:"font-bold text-[10px] ms-3"},  { default: () => "A worker at Hangzhou" })
         ]),
         h("div",
-          {class : "text-[10px] text-center"}, {default : ()=>data.value.admin_name}
+          {class : "text-[10px] text-center"}, {default : ()=>"Admin"}
         )
       ])
     ]
@@ -214,33 +201,12 @@ const options = ref( [
         // }
       ]);
 
-      onMounted( async ()=>{
-try {
-  let backend = await fetch(`${url}/admin/profile`,{
-method : "GET",
-headers : {
-  "Authorization": `Bearer ${localStorage.getItem('token')}`
-}
-  });
-  console.log(backend.status);
-  if(backend.status == 200){
-    backend = await backend.json();
-    console.log(backend);
-    data.value = backend;
-  }
-  if(backend.status == 401){
-    throw new Error("Siz tizimga kirish huquqiga ega emassiz")
-  }
-} catch (error) {
-  message.error(error.message);
-}
+      onMounted(()=>{
+
 
 setTimeout(() => {
 isLoading.value = false;
 }, 500); 
-
-
-
 });
 
    function   handleSelect(key) {

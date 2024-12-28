@@ -1,4 +1,5 @@
 <template>
+      <n-message-provider :placement="'bottom-right'">
 
     <div v-if="isLoading" class="fixed w-[100vw] h-[100vh] flex items-center bg-slate-900 justify-center ">
         <img src="/infinite-spinner.svg" class="w-[200px]" alt="">
@@ -28,7 +29,8 @@
                 <div class="flex justify-center items-center gap-4">
                     <label for="input-6" class="block text-sm mt-2 font-medium text-gray-700">Email</label>
                     <div class="relative mt-1">
-                        <input type="email" id="input-6"
+                        <input type="text" id="input-6"
+                            v-model="login1"
                             class="block w-[300px]  h-10 pl-8 pr-3 mt-1 text-sm text-gray-700 border focus:outline-none rounded shadow-sm focus:border-blue-500"
                             placeholder="jamshid14092002@gmail.com" />
                         <span class="absolute inset-y-0 left-0 flex items-center justify-center ml-2">
@@ -42,6 +44,7 @@
                     <label for="input-7" class="block text-sm mt-2 font-medium text-gray-700">Parol</label>
                     <div class="relative mt-1">
                         <input type="password" id="input-7"
+                            v-model="password"
                             class="block w-[300px]  h-10 pl-8 pr-3 mt-1 text-sm text-gray-700 border focus:outline-none rounded shadow-sm focus:border-blue-500"
                             placeholder="parol1345" />
                         <span class="absolute inset-y-0 left-0 flex items-center justify-center ml-2"><font-awesome-icon class="text-blue-600 mt-1" :icon="['fas', 'lock']" />
@@ -54,8 +57,11 @@
             </routerLink>
             <div class="w-full mt-4 mb-4">
                 <button type="submit" 
-                    class="py-2 px-4 max-w-md  flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    <font-awesome-icon :icon="['fas', 'circle-arrow-right']" />
+                    :disabled="loading"
+                    :class="loading ? 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed' : 'bg-blue-600'"
+                    class="py-2  px-4 max-w-md  flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                    <font-awesome-icon v-if="!loading" :icon="['fas', 'circle-arrow-right']" />
+                    <svg v-else xmlns='http://www.w3.org/2000/svg' class="w-[20px] h-[20px]" viewBox='0 0 200 200'><circle fill='#FFFFFF' stroke='#FFFFFF' stroke-width='15' r='15' cx='40' cy='65'><animate attributeName='cy' calcMode='spline' dur='2' values='65;135;65;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.4'></animate></circle><circle fill='#FFFFFF' stroke='#FFFFFF' stroke-width='15' r='15' cx='100' cy='65'><animate attributeName='cy' calcMode='spline' dur='2' values='65;135;65;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='-.2'></animate></circle><circle fill='#FFFFFF' stroke='#FFFFFF' stroke-width='15' r='15' cx='160' cy='65'><animate attributeName='cy' calcMode='spline' dur='2' values='65;135;65;' keySplines='.5 0 .5 1;.5 0 .5 1' repeatCount='indefinite' begin='0'></animate></circle></svg>
                 </button>
             </div>
 
@@ -65,15 +71,21 @@
             </div>
 
         </form>
-    </div>
+    </div></n-message-provider>
 </template>
 
 <script setup>
+// import bouncing from "../../public/bouncing-circles.svg" 
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import url from "../../url"
+import {useMessage} from "naive-ui";
+const message = useMessage();
 const form = ref(!false);
 const router = useRouter();
-
+const login1 = ref("");
+const password = ref("");
+const loading = ref(false);
 const isLoading = ref(true);
 onMounted(()=>{
 
@@ -88,9 +100,35 @@ onMounted(()=>{
 });
 
 
-const login = function(){
+const login = async function(){
+    loading.value = true;
+try {
+    
+    let backend = await fetch(`${url}/admin/login`, {
+    method : "POST",
+    headers : {
+        "Content-Type" : "application/json"
+    },
+    body : JSON.stringify({
+        login : login1.value,
+        password : password.value
+    })});
 
-    return router.push("/admin")
+    if(backend.status == 400){
+    backend = await backend.json();
+   
+        loading.value = false;
+        throw new Error("Email yoki parol noto'g'ri kiritildi");
+    }
+    if(backend.status == 200){
+        let data = await backend.json();
+        localStorage.setItem("token", data.token);
+        router.push("/admin");
+    }
+} catch (error) {
+    message.error(error.message);
+
+}
 }
 </script>
 
