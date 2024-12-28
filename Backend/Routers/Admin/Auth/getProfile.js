@@ -35,3 +35,53 @@ where admin.id = $1 and admin.state and admin.active
 });
 
 export default router;
+
+/**
+ * @swagger
+ * /admin/profile:
+ *   get:
+ *     summary: Foydalanuvchi profilini olish
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Foydalanuvchi profili
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                   example: John
+ *                 login:
+ *                   type: string
+ *                   example: john_doe
+ *                 lastname:
+ *                   type: string
+ *                   example: Doe
+ *                 firstname:
+ *                   type: string
+ *                   example: John
+ *                 birthday:
+ *                   type: string
+ *                   format: date
+ *                   example: 1990-01-01
+ *                 admin_name:
+ *                   type: string
+ *                   example: Admin
+ *                 permission_id:
+ *                   type: integer
+ *                   example: 1
+ *                 email:
+ *                   type: string
+ *                   example: john.doe@example.com
+ *                 profile_url:
+ *                   type: string
+ *                   example: /uploads/profile.jpg
+ *       401:
+ *         description: Foydalanuvchi bloklangan
+ *       500:
+ *         description: Server xatosi
+ */

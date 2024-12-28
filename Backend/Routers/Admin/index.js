@@ -4,6 +4,8 @@ import profile from "./Auth/getProfile.js";
 import changepassword from "./Auth/changepassword.js";
 import changeprofile from "./Auth/changeprofile.js";
 import changephoto from "./Auth/changephoto.js";
+import fogotpassword from "./Auth/forgotpassword.js";
+import resetpassword from "./Auth/resetpassword.js";
 
 export default 
 [
@@ -13,6 +15,8 @@ export default
     {component : changepassword, path : "/changepassword"},
     {component : changeprofile, path : "/changeprofile"},
     {component : changephoto, path : "/changephoto"},
+    {component : fogotpassword, path : "/forgotpassword"},
+    {component : resetpassword, path : "/resetpassword"},
 ]
 
 

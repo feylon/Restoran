@@ -45,3 +45,40 @@ router.post("/", async (req, res) => {
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzNGI0MDc4LWQ1YTctNGM1NC1hNjcyLWNhYmNhM2I5NDMzMyIsImlhdCI6MTczNTI5OTI4MywiZXhwIjoxNzM1OTA0MDgzfQ.FpRZRvs4vUUIjHPZDRg2am1Dezi_BaA2Wu8gm25gzpg
 */
 export default router;
+
+/**
+ * @swagger
+ * /admin/login:
+ *   post:
+ *     summary: Foydalanuvchi login qilish
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               login:
+ *                 type: string
+ *                 example: userlogin
+ *               password:
+ *                 type: string
+ *                 example: userpassword
+ *     responses:
+ *       200:
+ *         description: Muvaffaqiyatli login
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                 die:
+ *                   type: string
+ *       400:
+ *         description: Login yoki parol noto'g'ri yoki hisob bloklangan
+ *       500:
+ *         description: Server xatosi
+ */

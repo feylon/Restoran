@@ -29,3 +29,47 @@ catch (error) {
     res.status(500).send({error: "Server error 🤢🤢🤢🤔"});
 }});
 export default router;
+/**
+ * @swagger
+ * /admin/changeprofile:
+ *   patch:
+ *     summary: Profilni o'zgartirish
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@example.com
+ *               firstname:
+ *                 type: string
+ *                 example: John
+ *               lastname:
+ *                 type: string
+ *                 example: Doe
+ *               birthday:
+ *                 type: string
+ *                 format: date
+ *                 example: 1990-01-01
+ *     responses:
+ *       200:
+ *         description: Profil muvaffaqiyatli o'zgartirildi
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Profile changed 😎😎😎
+ *       400:
+ *         description: Yaroqsiz ma'lumot
+ *       500:
+ *         description: Server xatosi
+ */

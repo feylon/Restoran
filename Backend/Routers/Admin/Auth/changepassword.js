@@ -50,3 +50,43 @@ router.post("/", verify, async (req, res) => {
 });
 
 export default router;
+
+/**
+ * @swagger
+ * /admin/changepassword:
+ *   post:
+ *     summary: Parolni o'zgartirish
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               oldpassword:
+ *                 type: string
+ *                 example: oldpassword123
+ *               newpassword:
+ *                 type: string
+ *                 example: NewPassword!123
+ *     responses:
+ *       200:
+ *         description: Parol muvaffaqiyatli o'zgartirildi
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Password changed 😎😎😎
+ *       400:
+ *         description: Parol noto'g'ri yoki hisob bloklangan
+ *       401:
+ *         description: Foydalanuvchi bloklangan
+ *       500:
+ *         description: Server xatosi
+ */
