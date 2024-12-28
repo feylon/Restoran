@@ -5,7 +5,7 @@ import { configDotenv } from "dotenv";
 import pool from "./functions/database.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-
+import md5 from "md5";
 
 
 (async () => {
@@ -79,6 +79,7 @@ const server = http.createServer(app);
 import Admin from "./Routers/Admin/index.js";
 Admin.forEach((index) =>app.use(`/admin${index.path}`, index.component));
 
+console.log();
 try {
   server.listen(process.env.PORT || 3000, () =>
     console.log("Server ishga tushdi : ", server.address().port)

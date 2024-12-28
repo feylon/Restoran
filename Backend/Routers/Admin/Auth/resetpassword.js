@@ -46,7 +46,7 @@ export default router;
 
 /**
  * @swagger
- * /admin/auth/resetpassword:
+ * /admin/resetpassword:
  *   post:
  *     summary: Parolni tiklash
  *     tags: [Auth]

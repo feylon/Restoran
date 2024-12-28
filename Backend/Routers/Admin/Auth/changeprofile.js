@@ -37,7 +37,7 @@ export default router;
  *     tags: [Auth]
  *     security:
  *       - bearerAuth: []
- *     requestBody:
+ *     requestBody:  
  *       required: true
  *       content:
  *         application/json:
