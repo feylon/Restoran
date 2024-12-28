@@ -2,4 +2,5 @@
 /vite-project/node_modules
 /frontend/node_modules
 /fronend/dist
+/backend/uploads
 /backend/node_modules
