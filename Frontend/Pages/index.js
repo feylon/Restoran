@@ -14,7 +14,8 @@ const router = createRouter({
 
         children :
         [
-            {path:"/admin", component :()=>import("../src/Admin/components/dashtboard.vue")}
+            {path:"/admin", component :()=>import("../src/Admin/components/dashtboard.vue")},
+            {path: "/admin/security", component:()=>import("../src/Admin/Auth/ChangePassword.vue")},
         ]
     }
     

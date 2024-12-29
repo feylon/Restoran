@@ -78,7 +78,6 @@
 // import bouncing from "../../public/bouncing-circles.svg" 
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import url from "../../url"
 import {useMessage} from "naive-ui";
 const message = useMessage();
 const form = ref(!false);
@@ -104,7 +103,7 @@ const login = async function(){
     loading.value = true;
 try {
     
-    let backend = await fetch(`${url}/admin/login`, {
+    let backend = await fetch(`${window.url}/admin/login`, {
     method : "POST",
     headers : {
         "Content-Type" : "application/json"
