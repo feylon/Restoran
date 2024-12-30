@@ -25,7 +25,13 @@
         <div class="flex gap-6 items-center pe-3 ">
 
 
-
+          <div class="border-l-[1px] w-[130px]  ps-5 flex items-center justify-center ">
+            <div class="flex gap-2 items-center pe-3 h-[100%]">
+              
+              <img src="https://cdn0.iconfinder.com/data/icons/cloudy-2/425/snow-1024.png" class="w-[40px]" alt="">
+              <span class="font-bold select-none"> <span>25&deg;C</span></span>
+            </div>
+          </div>
 
           <n-popover trigger="hover">
             <template #trigger>
@@ -48,7 +54,7 @@
             <span>Sizda {{ value }} ta bildirishnoma mavjud</span>
           </n-popover>
         </div>
-        <div class="border-l-[0 px] ps-5 flex items-center justify-center ">
+        <div class="border-l-[1px]  ps-5 flex items-center justify-center ">
           <n-dropdown trigger="hover" :options="options" @select="handleSelect">
             <div
               class="flex flex-col w-[90px] border-transparent border-s-2 h-[38%]  mt-1 items-center justify-center gap-1 cursor-pointer">
@@ -100,6 +106,8 @@ import { onMounted, h } from "vue";
 import { useRouter } from "vue-router";
 import {Admin} from "../../Pinia";
 import { fetchAdmin } from "../../http";
+import {VSnowDirective, VSnowContainer} from 'vsnow'
+
 
 const admin = Admin();
 const message = useMessage();
@@ -116,7 +124,7 @@ const data = ref({
   permission_id: "1",
   email: "user@example.com",
   profile_url: "/uploads/profile_pics/f54efbfefc3bc732793e8a4c16425f40.jpg"
-})
+});
 
 
 const menu = ref(

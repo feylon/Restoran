@@ -4,6 +4,7 @@ import App from "./App.vue";
 import router from "../Pages";
 import naive from "naive-ui";
 import { createPinia } from 'pinia'
+import { VSnowDirective } from "vsnow";
 
 import url from "../url"
 import {fetchAdmin} from "../http"
@@ -38,5 +39,6 @@ app.use(pinia);
 app.use(router);
 app.use(naive);
 app.component("font-awesome-icon", FontAwesomeIcon);
+app.directive('snow', VSnowDirective);
 app.mount("#app");
 

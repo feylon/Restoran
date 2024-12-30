@@ -2,13 +2,13 @@
     <n-card title="Parolni almashtirish" class="select-none max-h-[390px]">
       <div>
           <n-form-item label="Joriy parol">
-              <n-input v-model:value="password" type="password" />
+              <n-input v-model:value="password"  type="password" placeholder="1345678" />
           </n-form-item>
           <n-form-item label="Yangi parol">
-              <n-input v-model:value="newPassword" type="password" />
+              <n-input v-model:value="newPassword" type="password" placeholder="1345678" />
           </n-form-item>
           <n-form-item label="Yangi parolni tasdiqlang">
-              <n-input v-model:value="confirmPassword" type="password" />
+              <n-input v-model:value="confirmPassword" type="password" placeholder="1345678" />
           </n-form-item>
           <n-form-item class="flex justify-end">
               <n-button @click="changepassword" type="primary" title="Saqlash"><font-awesome-icon :icon="['fas', 'check']" /></n-button>
