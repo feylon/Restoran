@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <routerLink to="/" class="w-full text-sm text-blue-600 mt-[-30px] flex justify-end">
+            <routerLink to="/admin/forgot" class="w-full inline text-sm text-blue-600 mt-[-30px] flex justify-end">
                 Parolni unitdingizmi ?
             </routerLink>
             <div class="w-full mt-4 mb-4">
@@ -89,9 +89,9 @@ const isLoading = ref(true);
 onMounted(()=>{
 
 
-    setTimeout(() => {
+
     isLoading.value = false;
-  }, 500); 
+  
     window.addEventListener("keydown", (e)=>{
 
         if(e.key == "Escape" && form.value)form.value = false;
