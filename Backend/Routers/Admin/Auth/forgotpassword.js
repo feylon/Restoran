@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
           <h2>Parolni tiklash so'rovi</h2>
           <p>Siz (yoki boshqa birov) hisobingiz uchun parolni tiklashni so'raganingiz sababli ushbu xabarni oldingiz.</p>
           <p>Jarayonni yakunlash uchun quyidagi havolani bosing yoki brauzeringizga nusxa ko'chiring:</p>
-          <a href="http://${req.headers.host}/reset/${token}" style="display: inline-block; padding: 10px 20px; margin: 10px 0; font-size: 16px; color: #fff; background-color: #007bff; border-radius: 5px; text-decoration: none;">Parolni tiklash</a>
+          <a href="http://${req.headers.host}/#/admin/reset/${token}" style="display: inline-block; padding: 10px 20px; margin: 10px 0; font-size: 16px; color: #fff; background-color: #007bff; border-radius: 5px; text-decoration: none;">Parolni tiklash</a>
           <p>Agar siz bu so'rovni qilmagan bo'lsangiz, iltimos, ushbu xabarni e'tiborsiz qoldiring va parolingiz o'zgarmaydi.</p>
           <p>Rahmat,<br/>Ergashev Jamshid</p>
         </div>
