@@ -78,8 +78,11 @@ const server = http.createServer(app);
 // Routers
 import Admin from "./Routers/Admin/index.js";
 import food_category from "./Routers/food_category/index.js";
+import food from "./Routers/Food/index.js"
 Admin.forEach((index) =>app.use(`/admin${index.path}`, index.component));
 food_category.forEach((index) =>app.use(`/admin/food_category${index.path}`, index.component));
+food.forEach((index) =>app.use(`/admin/food${index.path}`, index.component));
+
 
 try {
   server.listen(process.env.PORT || 3000, () =>
