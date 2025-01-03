@@ -105,6 +105,8 @@ export default router;
  * /admin/food_category/upload_pic/{id}:
  *   post:
  *     summary: Upload a picture
+ *     tags: 
+ *       - Food Category
  *     description: Upload a picture to the server with Bearer token authentication.
  *     parameters:
  *       - in: path
