@@ -57,7 +57,7 @@ CREATE TABLE food_category (
     FOREIGN KEY (created_by) REFERENCES admin(id),
 	description TEXT
 	);
-CREATE TABLE food_item (
+CREATE TABLE food (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name_uz VARCHAR(50) NOT NULL unique,
     name_kril VARCHAR(50) NOT NULL unique,
