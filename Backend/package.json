@@ -11,6 +11,7 @@
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-pg-simple": "^9.0.1",

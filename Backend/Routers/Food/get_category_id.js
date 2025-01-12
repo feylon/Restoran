@@ -60,3 +60,122 @@ ORDER BY food.name_${lang} ${order_by}
 });
 
 export default router;
+/**
+ * @swagger
+ * /admin/food/get:
+ *   get:
+ *     summary: Get a list of food items by category with pagination and sorting
+ *     tags: 
+ *       - Food
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         description: The page number to retrieve
+ *       - in: query
+ *         name: size
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         description: The number of items per page
+ *       - in: query
+ *         name: lang
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [uz, kril, rus, en]
+ *         description: The language for the food name
+ *       - in: query
+ *         name: order
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [az, za]
+ *         description: The order direction (az for ascending, za for descending)
+ *       - in: query
+ *         name: category
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: The ID of the food category
+ *     responses:
+ *       200:
+ *         description: A list of food items
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   created_at:
+ *                     type: string
+ *                     format: date-time
+ *                   description:
+ *                     type: string
+ *                   price:
+ *                     type: number
+ *                   amount:
+ *                     type: number
+ *                   image_url:
+ *                     type: string
+ *                   param:
+ *                     type: string
+ *                   status:
+ *                     type: boolean
+ *                   discount:
+ *                     type: boolean
+ *                   discount_value:
+ *                     type: number
+ *                   format:
+ *                     type: string
+ *                   all:
+ *                     type: integer
+ *                   created_by:
+ *                     type: string
+ *                   food_category_id:
+ *                     type: string
+ *                   food_category_name:
+ *                     type: string
+ *       400:
+ *         description: Bad request or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid input data"
+ *       401:
+ *         description: Unauthorized access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Server error"
+ *     security:
+ *       - bearerAuth: []
+ */

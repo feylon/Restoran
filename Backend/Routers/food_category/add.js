@@ -6,12 +6,44 @@ import Joi from "joi";
 const router = Router();
 
 const schema = Joi.object({
-  name_uz: Joi.string().max(50).required(),
-  name_kril: Joi.string().max(50).required(),
-  name_rus: Joi.string().max(50).required(),
-  name_en: Joi.string().max(50).required(),
-  status: Joi.boolean().optional(),
-  description: Joi.string().optional(),
+  name_uz: Joi.string().max(50).min(3).required().messages({
+    "string.base": "O'zbekcha nomi matn bo'lishi kerak",
+    "string.empty": "O'zbekcha nomi kiritilishi shart",
+    "string.min": "O'zbekcha nomi kamida 3 ta belgidan iborat bo'lishi kerak",
+    "string.max": "O'zbekcha nomi 50 ta belgidan oshmasligi kerak",
+    "any.required": "O'zbekcha nomi kiritilishi shart",
+  }),
+  name_kril: Joi.string().max(50).min(3).required().messages({
+    "string.base": "Кириллча номи matn bo'lishi kerak",
+    "string.empty": "Кириллча номи kiritilishi shart",
+    "string.min": "Кириллча номи kamida 3 ta belgidan iborat bo'lishi kerak",
+    "string.max": "Кириллча номи 50 ta belgidan oshmasligi kerak",
+    "any.required": "Кириллча номи kiritilishi shart",
+  }),
+  name_rus: Joi.string().max(50).min(3).required().messages({
+    "string.base": "Русское название matn bo'lishi kerak",
+    "string.empty": "Русское название kiritilishi shart",
+    "string.min": "Русское название kamida 3 ta belgidan iborat bo'lishi kerak",
+    "string.max": "Русское название 50 ta belgidan oshmasligi kerak",
+    "any.required": "Русское название kiritilishi shart",
+  }),
+  name_en: Joi.string().max(50).min(3).required().messages({
+    "string.base": "English name must be a string",
+    "string.empty": "English name is required",
+    "string.min": "English name must be at least 3 characters",
+    "string.max": "English name must not exceed 50 characters",
+    "any.required": "English name is required",
+  }),
+  status: Joi.boolean().required().messages({
+    "boolean.base": "Status must be a boolean value",
+    "any.required": "Status is required",
+  }),
+  description: Joi.string().min(3).required().messages({
+    "string.base": "Description must be a string",
+    "string.empty": "Description is required",
+    "string.min": "Description must be at least 3 characters",
+    "any.required": "Description is required",
+  }),
 });
 
 router.post("/", verify, async (req, res) => {
@@ -35,7 +67,7 @@ router.post("/", verify, async (req, res) => {
     res.json(result.rows[0]);
   } catch (err) {
     if ((err.code == "23505"))
-      return res.status(400).json({ error: err.detail });
+      return res.status(409).json({ error: err.detail });
     console.error("Database error:", err);
     res.status(500).json({ error: "Internal server error" });
   }

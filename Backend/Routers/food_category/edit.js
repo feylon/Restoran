@@ -14,8 +14,11 @@ const schema = Joi.object({
   description: Joi.string().optional(),
 });
 
+const schemaURL = Joi.object({id : Joi.string().required().uuid()})
+
 router.put("/:id", verify, async (req, res) => {
   const { error, value } = schema.validate(req.body);
+  if(schemaURL.validate(req.params).error) return res.status(400).send({error : schemaURL.validate(req.params).error.message})
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }
@@ -43,6 +46,8 @@ router.put("/:id", verify, async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
+    if ((err.code == "23505"))
+      return res.status(409).json({ error: err.detail });
     if(err.code == "22P02") return res.status(400).send({ error: "UUID error" });
     console.error("Database error:", err);
     res.status(500).json({ error: "Internal server error" });

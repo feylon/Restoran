@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 
 const router = Router();
-
+// path http://localhost:4100/admin/food/deletefood/1e93553d-44b1-4b59-a2fb-96da2b25a000 food ADMIN
 router.delete("/:id", verify, async (req, res) => {
   const Schema = Joi.object({ id: Joi.string().uuid().required() });
   const { error, value } = Schema.validate(req.params);
@@ -56,3 +56,73 @@ router.delete("/:id", verify, async (req, res) => {
 });
 
 export default router;
+
+/**
+ * @swagger
+ * /admin/food/deletefood/{id}:
+ *   delete:
+ *     summary: Delete a food item and its associated images
+ *     tags: 
+ *       - Food
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: The ID of the food item to delete
+ *     responses:
+ *       200:
+ *         description: Files and data deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Fayllar va ma'lumot muvaffaqiyatli o'chirildi."
+ *       400:
+ *         description: Bad request or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid input data"
+ *       401:
+ *         description: Unauthorized access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized"
+ *       404:
+ *         description: Data not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "DATA NOT FOUND"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Server error"
+ *     security:
+ *       - bearerAuth: []
+ */

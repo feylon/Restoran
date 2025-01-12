@@ -5,7 +5,7 @@ import { verify } from "../../functions/JWTAdmin.js";
 import path from "path";
 import md5 from "md5";
 const router = Router();
-
+// path http://localhost:4100/admin/food/add_pic/7d90b119-9d65-44db-83ff-9bcddfb39df7 food ADMIN
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/food/");
@@ -86,3 +86,88 @@ router.post("/:id", verify, async (req, res) => {
 });
 
 export default router;
+
+/**
+ * @swagger
+ * /admin/food/add_pic/{id}:
+ *   post:
+ *     summary: Upload a photo for a food item
+ *     tags: 
+ *       - Food
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: The ID of the food item
+ *       - in: formData
+ *         name: photo
+ *         type: file
+ *         required: true
+ *         description: The photo to upload (only .jpg and .png files are allowed, max size 4MB)
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               photo:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Photo updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Photo updated successfully 😎😎😎"
+ *       400:
+ *         description: Bad request or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid input data"
+ *       401:
+ *         description: Unauthorized access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized"
+ *       404:
+ *         description: Food not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Food not found"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Server error"
+ *     security:
+ *       - bearerAuth: []
+ */

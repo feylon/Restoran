@@ -8,7 +8,10 @@ import { VSnowDirective } from "vsnow";
 
 import url from "../url"
 import {fetchAdmin} from "../http"
+import {lotinToKrill} from "../Functions/kril_lotin";
+
 // Developer settings
+window.lotinToKrill = lotinToKrill;
 window.url = url;
 window.fetchAdmin = fetchAdmin;
 console.log(window.url)

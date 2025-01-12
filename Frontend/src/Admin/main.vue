@@ -3,40 +3,53 @@
     <img src="/infinite-spinner.svg" class="w-[200px]" alt="">
   </div>
   <div v-else class="w-[100vw] overflow-hidden bg-[#F9FAFB] h-[100vh] min-h-[100vh]">
-    <div class="w-full items-center h-[60px]  flex border-transparent shadow-sm  bg-white">
+    <div
+      class="w-full items-center  h-[60px] shadow-slate-900 z-10 border-b-[1px] border-solid flex border-[#1d2b4d] shadow-sm !text-white  bg-[#0F172A]">
 
-      <div class="h-full flex min-w-[300px] border-e-[1px] justify-center pe-10 gap-4 items-center border-b-[1px]">
-        <img src="/fork-and-knife-icon-vector-18744737.jpg" class="w-[50px] rounded-[50%] object-fill" alt="">
-        <h2 class="text-[#313435] text-[18px] font-bold">
+      <div :class="collapsed ? 'min-w-[61px]' : 'min-w-[299px]'"
+        class="h-full bg-[#0F172A] flex  border-e-[1px] justify-center moving  gap-4 items-center border-[#1d2b4d] border-b-[1px]">
+        <img src="/fork-and-knife-icon-vector-18744737.jpg" class="w-[35px] h-[35px] rounded-[50%] object-fill" alt="">
+        <h2 class="text-[#ffffff] hidden text-[18px] font-bold">
           Admin
         </h2>
       </div>
 
-      <div class="flex items-center text-[#72777a] ps-2  w-[calc(100%-300px)]">
-        <font-awesome-icon class="text-[15px] cursor-pointer hover:text-[#252525] duration-500"
+      <div @click="collapsed = !collapsed"
+        class="flex items-center text-white text-[#72777a] ps-2  w-[calc(100%-300px)]">
+        <font-awesome-icon class="text-[15px] cursor-pointer hover:text-[#b5bcc0] duration-500"
           :icon="['fas', 'bars']" />
 
         <div>
         </div>
       </div>
 
-      <div class="flex gap-4 items-center pe-3 ">
+      <div class="flex border-l-[1px] border-r-[1px]  border-[#1d2b4d] gap-4 items-center pe-3 ">
 
-        <div class="flex gap-6 items-center pe-3 ">
-
-
-          <div class="border-l-[1px] w-[130px]  ps-5 flex items-center justify-center ">
-            <div class="flex gap-2 items-center pe-3 h-[100%]">
-              
-              <img src="https://cdn0.iconfinder.com/data/icons/cloudy-2/425/snow-1024.png" class="w-[40px]" alt="">
-              <span class="font-bold select-none"> <span>25&deg;C</span></span>
-            </div>
-          </div>
+        <div class="flex  gap-6 items-center pe-3 ">
 
           <n-popover trigger="hover">
             <template #trigger>
+              <div class=" w-[130px] cursor-pointer ps-5 flex items-center justify-center ">
+                <div class="flex gap-2 items-center pe-3 h-[100%]">
+
+                  <img :src="wh" class="w-[50px]" alt="">
+                  <span class="font-bold select-none"> <span>{{ temp }}&deg;C</span></span>
+                </div>
+              </div>
+            </template>
+            <div class="flex select-none gap-2 items-center pe-3 h-[100%]">
+              <img :src="wh" class="w-[50px]" alt="">
+              <div class="flex gap-1 flex-col items-center justify-center">
+                <div class="font-bold select-none"> <span>{{ temp }}&deg;C</span></div>
+                <span class="capitalize ">{{ condition }}</span>
+              </div>
+            </div>
+            <!-- <span class="font-bold">{{condition}}, {{ temp }} &deg;C</span> -->
+          </n-popover>
+          <n-popover trigger="hover">
+            <template #trigger>
               <n-badge type="success" :value="value" :max="15">
-                <font-awesome-icon class="text-[18px] text-[#313435]" :icon="['far', 'envelope']" />
+                <font-awesome-icon class="text-[18px] text-white text-[#313435]" :icon="['far', 'envelope']" />
 
               </n-badge>
             </template>
@@ -48,13 +61,14 @@
             <template #trigger>
               <n-badge type="success" :value="value" :max="15">
 
-                <font-awesome-icon class="text-[18px] text-[#313435]" :icon="['far', 'bell']" />
+                <font-awesome-icon class="text-[18px] text-white text-[#313435]" :icon="['far', 'bell']" />
               </n-badge>
             </template>
             <span>Sizda {{ value }} ta bildirishnoma mavjud</span>
           </n-popover>
         </div>
-        <div class="border-l-[1px]  ps-5 flex items-center justify-center ">
+        <div class="border-l-[1px] border-[#1d2b4d]
+         ps-5 flex items-center justify-center ">
           <n-dropdown trigger="hover" :options="options" @select="handleSelect">
             <div
               class="flex flex-col w-[90px] border-transparent border-s-2 h-[38%]  mt-1 items-center justify-center gap-1 cursor-pointer">
@@ -73,44 +87,59 @@
 
     </div>
 
-    <div class="w-full  bg-none h-full flex ">
-      <div
-        class="min-w-[300px] shadow-sm shadow-[#c0c3c9] flex pt-10 pb-[100px] overflow-x-auto flex-col items-center border-transparent border-e-[1px] border-[#e0e6e7] h-full bg-white">
+    <div class="w-full min-h-full h-full">
+      <!--  -->
 
-        <routerLink v-for="(i, j) in menu" :key="j" :to="i.to"
-          class=" w-[280px] hover:bg-slate-100 -300 rounded-md mb-3 ps-4 flex items-center justify-start gap-5 text-[15px] p-3 ">
-          <font-awesome-icon class="text-[18px]" :icon="i.font" :class="i.class" />
-          <span class="text-gray-500 font-semibold">
-            {{ i.content }}
-          </span>
-        </routerLink>
-      </div>
-      <div
-        class="w-full selection:bg-blue-300 min-w-[calc(100%-299px)] p-3 h-full min-h-full overflow-x-auto mb-10 pb-[100px]">
-        <router-view>
+      <n-space class="h-[800px]  min-h-full" vertical>
+        <n-layout has-sider class="h-full shadow-[#c0c3c9] text-white min-h-full">
+          <n-layout-sider bordered collapse-mode="width" :collapsed-width="64" :width="300" :collapsed="collapsed"
+            show-trigger @collapse="collapsed = true" @expand="collapsed = false"
+            class="h-full bg-slate-900 shadow-[#c0c3c9] text-white min-h-full">
+            <!-- <n-menu
+          :inverted = "inverted"
+          class="h-[calc(100vh-60px)] text-red-500 min-h-full"
+          :collapsed="collapsed"
+          :collapsed-width="64"
+          :collapsed-icon-size="22"
+          :options="menuOptions"
+          :render-label="renderMenuLabel"
+          :render-icon="renderMenuIcon"
+          :expand-icon="expandIcon"
+        /> -->
+            <n-menu :inverted="inverted" class="h-[calc(100vh-60px)] text-red-500 min-h-full" :options="menuOptions"
+              @update:value="handleUpdateValue" />
 
-        </router-view>
-      </div>
+          </n-layout-sider>
+          <n-layout class="overflow-auto p-3 h-[calc(100vh-60px)]">
+            <span> <router-view>
 
+              </router-view></span>
+          </n-layout>
+        </n-layout>
+      </n-space>
+      <!--  -->
     </div>
-
 
   </div>
 </template>
 
 <script setup>
 import url from "../../url";
-import { ref } from 'vue';
-import { NAvatar, NText, useMessage } from "naive-ui";
+import { NAvatar, useDialog, NText, useMessage } from "naive-ui";
 import { onMounted, h } from "vue";
+import { RouterLink } from "vue-router";
 import { useRouter } from "vue-router";
-import {Admin} from "../../Pinia";
+import { Admin } from "../../Pinia";
 import { fetchAdmin } from "../../http";
-import {VSnowDirective, VSnowContainer} from 'vsnow'
-
-
+// import { BookmarkOutline, CaretDownOutline } from "@vicons/ionicons5";
+import { ref } from "vue";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { watch } from "vue";
 const admin = Admin();
 const message = useMessage();
+const wh = ref("");
+const condition = ref("Loading...");
+const temp = ref(25)
 const router = useRouter();
 const isLoading = ref(true);
 const value = ref(10);
@@ -126,16 +155,8 @@ const data = ref({
   profile_url: "/uploads/profile_pics/f54efbfefc3bc732793e8a4c16425f40.jpg"
 });
 
-
-const menu = ref(
-  [
-    { to: "/admin", font: ['fas', 'house'], class: 'text-blue-600', content: 'Dashtboard' },
-    { to: "/admin", font: ['fa-regular', 'fa-envelope'], class: 'text-yellow-600', content: 'Messages' },
-
-  ]
-
-
-);
+let inverted = ref(true);
+let dialog = useDialog();
 function renderCustomHeader() {
   return h(
     "div",
@@ -181,11 +202,11 @@ const options = ref([
       return h("div", { class: "ps-4 duration-700 flex items-center hover:bg-green-300 cursor-pointer flex border-t-[1px] border-solid" }, [
         h("span",
 
-          { innerHTML: `<span class="text-[20px] text-green-800"><i class="fas fa-house"></i></span>` },
+          { innerHTML: `<span class="text-[20px] text-[#0F172A]"><i class="fas fa-house"></i></span>` },
           { class: "" }
         ),
         h("div",
-          { class: "text-green-900 font-semibold ps-3" },
+          { class: "text-[#0F1725] font-semibold ps-3" },
           { default: () => "Bosh sahifa" }
         )
       ])
@@ -205,11 +226,11 @@ const options = ref([
       return h("div", { class: "ps-4 duration-700 flex items-center hover:bg-green-300 cursor-pointer flex border-t-[1px] border-solid" }, [
         h("span",
 
-          { innerHTML: `<span class="text-[20px] text-green-800"><i class="fas fa-lock"></i></span>` },
+          { innerHTML: `<span class="text-[20px] text-[#0F1725]"><i class="fas fa-lock"></i></span>` },
           { class: "" }
         ),
         h("div",
-          { class: "text-green-900 font-semibold ps-3 pe-3" },
+          { class: "text-[#0F1725] font-semibold ps-3 pe-3" },
           { default: () => "Maxfiylik & xavfsizlik" }
         )
       ])
@@ -218,7 +239,7 @@ const options = ref([
   },
 
   // Exit
-  
+
   {
     key: "wye8fgujsdfn",
     type: "render",
@@ -248,6 +269,7 @@ const options = ref([
 ]);
 
 onMounted(async () => {
+  obhavo();
   try {
     let backend = await fetchAdmin(`admin/profile`, {
       method: "GET",
@@ -255,7 +277,6 @@ onMounted(async () => {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
     }, router);
-    console.log(backend.status);
     if (backend.status == 200) {
       backend = await backend.json();
       console.log(backend);
@@ -272,14 +293,14 @@ onMounted(async () => {
       admin.profile_url = backend.profile_url;
 
     }
-    
+
   } catch (error) {
     message.error(error.message);
     return router.push('/admin/login');
   }
 
-    isLoading.value = false;
-  
+  isLoading.value = false;
+
 
 
 
@@ -289,7 +310,120 @@ function handleSelect(key) {
   message.info(String(key));
 }
 
+const collapsed = ref(false);
+
+
+
+const menuOptions = ref([
+
+
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: "/admin"
+      },
+      { default: () => "Bosh sahifa" }
+
+    ),
+    key: "hear-the-wind-sing",
+    icon: () => h(FontAwesomeIcon, { icon: ['fas', 'house'] })
+  },
+
+  {
+    label: "Oziq ovqatlar",
+    key: "Dance Dance Dance",
+    icon: () => h(FontAwesomeIcon, { icon: ['fas', 'utensils'] }),
+    children: [
+      {
+        type: "group",
+        label: "Bo'limlar",
+        key: "people",
+        children: [
+        {
+    label: () => h(
+      RouterLink,
+      {
+        to: "/admin/category"
+      },
+      { default: () => "Kategoriya" }
+
+    ),
+    key: "admin-food",
+    icon: () => h(FontAwesomeIcon, { icon: ['fas', 'list-check'] })
+  },
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: "/admin/food"
+      },
+      { default: () => "Taomlar" }
+
+    ),
+    key: "admin-category",
+    icon: () => h(FontAwesomeIcon, { icon: ['fas', 'hamburger'] })
+  }
+        ]
+      },
+     
+      
+      
+    ]
+  },
+  {
+    label: () => h(
+      RouterLink,
+      {
+        to: "/"
+      },
+      { default: () => "Tizimdan chiqish" }
+    ),
+    key: "EXIT_system",
+    icon: () => h(FontAwesomeIcon, { icon: ['fas', 'arrow-right-to-bracket'], class: "text-red-800  rotate-180" }),
+    props: {
+
+      onClick: () => {
+        localStorage.removeItem('token');
+        router.push('/admin/login');
+        return message.success("Siz tizimdan chiqdingiz");
+      },
+      class: "hover:text-red-800"
+
+    }
+
+  },
+]);
+let handleUpdateValue = (value) => {
+  console.log(value);
+};
+
+const obhavo = async function () {
+  try {
+    let backend = await fetchAdmin(`admin/wheather?city=samarkand`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+    }, router);
+    if (backend.status == 200) {
+      backend = await backend.json();
+      condition.value = backend.condition;
+      wh.value = backend.iconUrl;
+      temp.value = backend.temperature.toFixed(1);
+    }
+
+  } catch (error) {
+    message.error(error.message);
+  }
+
+  isLoading.value = false;
+}
 
 </script>
-
-<style lang="scss" scoped></style>
+<style scoped>
+.moving {
+  transition: all 0.8s ease;
+  /* duration: 0.5s; */
+}
+</style>

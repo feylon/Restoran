@@ -42,6 +42,7 @@ router.get("/", verify, async (req, res) => {
           food_category.name_en, 
           food_category.status, 
           food_category.description,
+          REPLACE(food_category.image_url ::text, '/uploads', '') as image_url,
           (SELECT COUNT(*) FROM food_category) AS all
         FROM food_category
         ORDER BY ${order_type} ${order_by}

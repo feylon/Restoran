@@ -6,6 +6,7 @@ import changeprofile from "./Auth/changeprofile.js";
 import changephoto from "./Auth/changephoto.js";
 import fogotpassword from "./Auth/forgotpassword.js";
 import resetpassword from "./Auth/resetpassword.js";
+import wheather from "./Auth/wheater.js";
 
 export default 
 [
@@ -17,6 +18,7 @@ export default
     {component : changephoto, path : "/changephoto"},
     {component : fogotpassword, path : "/forgotpassword"},
     {component : resetpassword, path : "/resetpassword"},
+    {component : wheather, path : "/wheather"}
 ]
 
 

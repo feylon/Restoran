@@ -70,3 +70,79 @@ WHERE id = $2;
 });
 
 export default router;
+
+/**
+ * @swagger
+ * /admin/food/remove_pic:
+ *   post:
+ *     summary: Remove a photo from a food item
+ *     tags: 
+ *       - Food
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *                 format: uuid
+ *                 example: "1e93553d-44b1-4b59-a2fb-96da2b25a000"
+ *               name:
+ *                 type: string
+ *                 example: "/food/photo.jpg"
+ *     responses:
+ *       200:
+ *         description: Image removed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Image removed"
+ *       400:
+ *         description: Bad request or validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid input data"
+ *       401:
+ *         description: Unauthorized access
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized"
+ *       404:
+ *         description: Image not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Image not found"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Server error"
+ *     security:
+ *       - bearerAuth: []
+ */
