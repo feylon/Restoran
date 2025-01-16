@@ -111,9 +111,12 @@
 
           </n-layout-sider>
           <n-layout class="overflow-auto p-3 h-[calc(100vh-60px)]">
-            <span> <router-view>
+            <span>
+              <router-view >
+  
+</router-view>
+</span>
 
-              </router-view></span>
           </n-layout>
         </n-layout>
       </n-space>
@@ -310,9 +313,14 @@ function handleSelect(key) {
   message.info(String(key));
 }
 
-const collapsed = ref(false);
-
-
+const collapsed = ref(eval(localStorage.collapsedAdmin == null   ?  true : localStorage.getItem("collapsedAdmin")));
+let bool =  Boolean(localStorage.collapsedAdmin == null   ?  true : localStorage.getItem("collapsedAdmin"));
+console.log(bool)
+// collapsed.value = localStorage.collapsedAdmin == null   ?  true : localStorage.getItem("collapsedAdmin");
+watch(collapsed, (newval, oldval)=>{
+  console.log(newval);
+  localStorage.setItem("collapsedAdmin", newval)
+});
 
 const menuOptions = ref([
 
@@ -414,7 +422,7 @@ const obhavo = async function () {
     }
 
   } catch (error) {
-    message.error(error.message);
+    // message.error(error.message);
   }
 
   isLoading.value = false;
@@ -425,5 +433,14 @@ const obhavo = async function () {
 .moving {
   transition: all 0.8s ease;
   /* duration: 0.5s; */
+}
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease;
+}
+.slide-enter-from {
+  transform: translateX(100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 </style>

@@ -41,6 +41,7 @@ const app = createApp(App);
 app.use(pinia);
 app.use(router);
 app.use(naive);
+app.component("FONTA", FontAwesomeIcon)
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.directive('snow', VSnowDirective);
 app.mount("#app");

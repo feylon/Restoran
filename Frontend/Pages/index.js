@@ -27,6 +27,7 @@ const router = createRouter({
             {path:"/admin/category", component :()=>import("../src/Admin/Category/CategoryList.vue")},
             {path:"/admin/category/add", component :()=>import("../src/Admin/Category/addCategory.vue")},
             {path:"/admin/food", component :()=>import("../src/Admin/taom/taom.vue")},
+            {path : "/admin/food/edit/:id", component:()=>import ("../src/admin/Taom/edit_taom.vue")},
             {path:"/admin/category/edit/:id", component:()=>import("../src/Admin/Category/edit.vue")},
             {path:"/admin/nofound", component:()=>import("../src/Admin/reuseable/404.vue")}
 
