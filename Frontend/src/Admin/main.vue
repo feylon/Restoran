@@ -422,7 +422,6 @@ const obhavo = async function () {
     }
 
   } catch (error) {
-    // message.error(error.message);
   }
 
   isLoading.value = false;
